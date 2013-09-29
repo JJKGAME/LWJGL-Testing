@@ -1,4 +1,4 @@
-LWJGL-Testing
+LWJGL Testing
 =============
 
-LWJGL example files
+The LWJGL demo files from The Coding Universe's LWJGL YouTube series
