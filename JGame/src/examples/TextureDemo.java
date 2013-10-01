@@ -1,3 +1,4 @@
+package examples;
 import static org.lwjgl.opengl.GL11.*;
 
 import java.io.File;
@@ -63,9 +64,9 @@ public class TextureDemo {
 				glVertex2i(200, 200);
 			}
 			glEnd();
-			
+		
 			glBindTexture(GL_TEXTURE_2D, 2);
-
+			
 			glBegin(GL_QUADS);
 			{
 				glTexCoord2f(0, 0); // binding the upper left corner of the
