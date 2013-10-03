@@ -1,7 +1,7 @@
 package minecraft2D;
 
 public enum BlockType {
-	STONE("res/stone.png"), AIR("res/air.png"), GRASS("res/grass.png"),DIRT("res/dirt.png");
+	STONE("res/images/stone.png"), AIR("res/images/air.png"), GRASS("res/images/grass.png"),DIRT("res/images/dirt.png");
 	
 	public final String location;
 	BlockType(String loc){

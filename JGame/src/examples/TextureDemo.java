@@ -24,8 +24,8 @@ public class TextureDemo {
 			e.printStackTrace();
 		}
 
-		wood = loadTexture("wood");
-		stone = loadTexture("stone");
+		wood = loadTexture("wood1");
+		stone = loadTexture("stone1");
 
 		// initialization code for OpenGL
 		glMatrixMode(GL_PROJECTION);
