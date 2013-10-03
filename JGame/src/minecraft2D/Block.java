@@ -22,8 +22,7 @@ public class Block {
 		this.x = x;
 		this.y = y;
 		try {
-			this.texture = TextureLoader.getTexture("PNG", new FileInputStream(
-					new File(type.location)));
+			this.texture = TextureLoader.getTexture("PNG", new FileInputStream(new File(type.location)));
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -31,8 +30,12 @@ public class Block {
 		}
 	}
 
-	public void draw() {
+	public void bind(){
 		texture.bind();
+	}
+		
+	public void draw() {
+		bind();
 
 		glLoadIdentity();
 		glTranslatef(x, y, 0);
