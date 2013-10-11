@@ -1,4 +1,4 @@
-package messingAround;
+package examples;
 
 import org.lwjgl.BufferUtils;
 import org.lwjgl.LWJGLException;
