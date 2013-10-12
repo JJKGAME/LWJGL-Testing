@@ -143,7 +143,8 @@ public class OBJLoader {
         }
     }
 
-    public static Model loadModel(File f) throws IOException {
+    @SuppressWarnings("resource")
+	public static Model loadModel(File f) throws IOException {
         BufferedReader reader = new BufferedReader(new FileReader(f));
         Model m = new Model();
         String line;
@@ -157,6 +158,8 @@ public class OBJLoader {
                 m.getNormals().add(parseNormal(line));
             } else if (prefix.equals("f")) {
                 m.getFaces().add(parseFace(m.hasNormals(), line));
+            } else if( prefix.equals(".")){
+            	continue;
             } else {
                 throw new RuntimeException("OBJ file contains line which cannot be parsed correctly: " + line);
             }
