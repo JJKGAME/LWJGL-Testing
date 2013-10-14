@@ -26,12 +26,13 @@ import static org.lwjgl.opengl.GL11.*;
 public class ModelDemo {
 
 	private static Camera camera;
-	private static int bunnyDisplayList, cubeDisplayList;
+	private static int bunnyDisplayList, cubeDisplayList, octDisplayList;
 
 	private static final String BUNNY = "res/models/bunny.obj";
 	private static final String CUBE = "res/models/cube.obj";
+	private static final String OCT = "res/models/octogon.obj";
 
-	private static boolean displayBunny = true, displayCube = false;
+	private static boolean displayBunny = false, displayCube = false, displayOct = true;
 
 	public static void main(String[] args) {
 		setUpDisplay();
@@ -52,6 +53,9 @@ public class ModelDemo {
 		genLists(bunnyDisplayList, BUNNY, "Bunny");
 		cubeDisplayList = glGenLists(1);
 		genLists(cubeDisplayList, CUBE, "Cube");
+		octDisplayList = glGenLists(1);
+		genLists(octDisplayList, OCT, "Octogon");
+
 	}
 
 	private static void genLists(int list, String location, String name) {
@@ -77,10 +81,13 @@ public class ModelDemo {
 	}
 
 	private static void loadFaces(Model m, String name) {
-		if(name == "Cube"){
+		if (name == "Cube") {
 			glColor3f(1, 0, 0);
-		} else if (name == "Bunny"){
+		} else if (name == "Bunny") {
 			glColor3f(1, 1, 1);
+		} else if (name == "Octogon") {
+			glColor3f(0, 1, 0);
+		//	glColor3f(1, 1, 1);
 		}
 		glBegin(GL_TRIANGLES);
 		for (Model.Face face : m.getFaces()) {
@@ -119,18 +126,25 @@ public class ModelDemo {
 		if (Keyboard.isKeyDown(Keyboard.KEY_1)) {
 			displayBunny = true;
 			displayCube = false;
+			displayOct = false;
 		}
 		if (Keyboard.isKeyDown(Keyboard.KEY_2)) {
 			displayBunny = false;
 			displayCube = true;
+			displayOct = false;
 		}
 		if (Keyboard.isKeyDown(Keyboard.KEY_3)) {
-			displayBunny = true;
-			displayCube = true;
-		}
-		if (Keyboard.isKeyDown(Keyboard.KEY_4)) {
+			displayOct = true;
 			displayBunny = false;
 			displayCube = false;
+		}
+		if(Keyboard.isKeyDown(Keyboard.KEY_4)){
+			
+		}
+		if (Keyboard.isKeyDown(Keyboard.KEY_0)) {
+			displayBunny = false;
+			displayCube = false;
+			displayOct = false;
 		}
 	}
 
@@ -150,14 +164,13 @@ public class ModelDemo {
 		if (displayCube) {
 			glCallList(cubeDisplayList);
 		}
+		if(displayOct){
+			glCallList(octDisplayList);
+		}
 	}
 
 	private static void setUpCamera() {
-		camera = new EulerCamera.Builder()
-				.setAspectRatio(
-						(float) Display.getWidth() / Display.getHeight())
-				.setRotation(-1.12f, 0.16f, 0f)
-				.setPosition(-1.38f, 1.36f, 7.95f).setFieldOfView(60).build();
+		camera = new EulerCamera.Builder().setAspectRatio((float) Display.getWidth() / Display.getHeight()).setRotation(-1.12f, 0.16f, 0f).setPosition(-1.38f, 1.36f, 7.95f).setFieldOfView(60).build();
 		camera.applyOptimalStates();
 		camera.applyPerspectiveMatrix();
 	}
