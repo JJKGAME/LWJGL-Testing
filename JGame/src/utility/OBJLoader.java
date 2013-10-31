@@ -161,7 +161,8 @@ public class OBJLoader {
             } else if( prefix.equals(".")){
             	continue;
             } else {
-                throw new RuntimeException("OBJ file contains line which cannot be parsed correctly: " + line);
+                continue;
+            	//throw new RuntimeException("OBJ file contains line which cannot be parsed correctly: " + line);
             }
         }
         reader.close();
